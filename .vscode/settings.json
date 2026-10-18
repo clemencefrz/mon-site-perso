@@ -1,5 +1,13 @@
 {
 	"files.associations": {
 		"*.css": "tailwindcss"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// Nécessaire : un réglage [langage] utilisateur l'emporte sur editor.defaultFormatter du workspace
+	"[svelte][typescript][javascript][json][jsonc][html][markdown][yaml][tailwindcss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }
