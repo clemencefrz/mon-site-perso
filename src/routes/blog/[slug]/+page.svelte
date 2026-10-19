@@ -17,4 +17,4 @@
 	{@html data.post.html}
 </article>
 
-<p><a href={resolve('/blog')}>← Tous les articles</a></p>
+<p><a href={resolve('/blog')}><span aria-hidden="true">←</span> Tous les articles</a></p>

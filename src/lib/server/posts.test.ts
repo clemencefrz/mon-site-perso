@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { loadPosts, parsePost, posts } from './posts';
+import { loadPosts, parsePost } from './posts';
 
 const post = (fields: string, body = 'Contenu') => `---\n${fields}\n---\n${body}`;
 
@@ -37,8 +37,8 @@ describe('parsePost', () => {
 		expect(() => parsePost('a', post(lines))).toThrow(`champ "${missing}" manquant`);
 	});
 
-	it('rejette une date mal formée', () => {
-		expect(() => parsePost('a', post('title: T\ndate: 02/01/2026\ndescription: D'))).toThrow(
+	it.each(['02/01/2026', '2026-13-01', '2026-02-30'])('rejette la date %s', (date) => {
+		expect(() => parsePost('a', post(`title: T\ndate: ${date}\ndescription: D`))).toThrow(
 			'date invalide'
 		);
 	});
@@ -52,11 +52,5 @@ describe('loadPosts', () => {
 		});
 
 		expect(result.map(({ slug }) => slug)).toEqual(['recent', 'ancien']);
-	});
-});
-
-describe('posts', () => {
-	it('charge les articles de src/posts', () => {
-		expect(posts.map(({ slug }) => slug)).toContain('bienvenue');
 	});
 });

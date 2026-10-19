@@ -12,6 +12,12 @@ export type Post = PostMeta & { html: string };
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
+function isValidDate(date: string): boolean {
+	if (!DATE.test(date)) return false;
+	const parsed = new Date(`${date}T00:00:00Z`);
+	return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+}
+
 export function parsePost(slug: string, raw: string): Post {
 	const match = raw.match(FRONTMATTER);
 	if (!match) throw new Error(`Article "${slug}" : frontmatter manquant`);
@@ -31,7 +37,7 @@ export function parsePost(slug: string, raw: string): Post {
 	for (const key of ['title', 'date', 'description']) {
 		if (!fields[key]) throw new Error(`Article "${slug}" : champ "${key}" manquant`);
 	}
-	if (!DATE.test(fields.date)) {
+	if (!isValidDate(fields.date)) {
 		throw new Error(`Article "${slug}" : date invalide "${fields.date}" (attendu AAAA-MM-JJ)`);
 	}
 
