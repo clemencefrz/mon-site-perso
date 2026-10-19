@@ -64,7 +64,7 @@ En échangeant avec des développeurs et des agents utilisant Grist, je me rends
 
 **Mode 3 : Grist comme base de données.** Grist sert uniquement à stocker et structurer les données. L’interface, la logique métier et le reste du back-end sont développés en dehors de Grist, via son API.
 
-J’ai notamment eu l’occasion d’échanger avec 3 agents qui ont chacun crée une application avec Grist dans ces trois modes de fonctionnements.
+J’ai notamment eu l’occasion d’échanger avec 3 agents qui ont chacun créé une application avec Grist dans ces trois modes de fonctionnement.
 
 ### 2.1 Mode 1 : Grist comme application complète : suivre des missions déléguées
 
@@ -78,17 +78,17 @@ En revanche, André remonte que la courbe d’apprentissage a été complexe pou
 
 ### 2.2 Mode 2 : Grist comme back-end d’une application sur mesure : gérer les arrivées et les départs
 
-L’objectif de cette application est de gérer les arrivées, les départs et les mouvements des agents (changement d’étage, changement de poste, mutation interne…) impliquent plusieurs services et interlocuteurs. Il faut organiser leurs interventions et construire un workflow adapté.
+L’objectif de cette application est de gérer les arrivées, les départs et les mouvements des agents (changement d’étage, changement de poste, mutation interne…), qui impliquent plusieurs services et interlocuteurs. Il faut organiser leurs interventions et construire un workflow adapté.
 
 Kada Sahnine, chef du pôle informatique du service des douanes, utilise Grist pour gérer ce processus d’arrivée et de départ.
 
 Dans cette configuration, Kada est la seule personne à manipuler le document Grist. Les utilisateurs finaux n’ont accès qu’au custom widget, dont l’interface est configurable dans les tables du document.
 
-Pour Kada, cette approche permet de développer facilement une interface adaptée aux besoins, en utilisant des bibliothèques JavaScript. Il constate des problèmes de lenteur et le même besoin faire communiquer les documents Grists entre eux.
+Pour Kada, cette approche permet de développer facilement une interface adaptée aux besoins, en utilisant des bibliothèques JavaScript. Il constate des problèmes de lenteur et le même besoin de faire communiquer les documents Grist entre eux.
 
 ### 2.3 Mode 3 : Grist comme base de données : centraliser les données de plusieurs services
 
-Christophe Cardona n’est pas développeur, c’est un agent des impôts (plus précisément, de la DRFiP). Lui et son équipe vient en support des agents de la S.I.E., les agents qui s’occupent des problèmes des impôts des entreprises.
+Christophe Cardona n’est pas développeur, c’est un agent des impôts (plus précisément, de la DRFiP). Lui et son équipe viennent en support des agents de la S.I.E., les agents qui s’occupent des problèmes des impôts des entreprises.
 
 Christophe Cardona conçoit alors PILOT qui utilise Grist comme base de données et comme back-office d’audit. Grist permet de construire rapidement un socle commun de données structurées. Les tables, les colonnes et l’API REST permettent de mettre ces données à disposition de plusieurs services et applications. Les données sont stockées dans un environnement souverain fourni par la DGFiP.
 
@@ -108,7 +108,7 @@ Après plus de 6 mois à utiliser Grist dans mon travail et à échanger avec de
 
 Je constate qu’il résout des problèmes classiques :
 
-- Il permet de structurer la donnée et donc savoir ce qu’on fait et de normaliser les processus. Comme l’outil est simple d’utilisation, et que chaque colonne est typée, il est oblige à se poser des questions et à homogénéiser les pratiques. Pour un agent CRB comment je définis un plan qui répond à une demande ? Quelles sont les ressources de biomasse qui peuvent être mises en jeu ?
+- Il permet de structurer la donnée et donc savoir ce qu’on fait et de normaliser les processus. Comme l’outil est simple d’utilisation, et que chaque colonne est typée, il oblige à se poser des questions et à homogénéiser les pratiques. Pour un agent CRB comment je définis un plan qui répond à une demande ? Quelles sont les ressources de biomasse qui peuvent être mises en jeu ?
 - Il permet de collaborer sur un même document entre plusieurs services facilement. Fini les excels avec les versions divergentes, ressaisies, absence d’historique fiable, risques d’écrasement, de suppression ou de déplacement involontaire des fichiers principaux, consolidations manuelles longues et pratiques hétérogènes entre services.
 - Il centralise la donnée : les données manipulées par les agents dans la plupart des services ne sont pas centralisées ni structurées. Par exemple, dans le cadre des agents des SIE : une entreprise est radiée, cette information est entrée dans un outil A mais comme cet outil n’est pas forcément lié aux autres outils, l’information n’est pas communiquée.
 
@@ -122,13 +122,13 @@ Je pense que Grist est aussi un outil intéressant pour créer des MVP. J’ai p
 
 Mais pour créer des fonctionnalités plus complexes, je suis encore en cours de réflexion.
 
-La question est peut-être plutôt… pourquoi choisir Grist dans le service publique.
+La question est peut-être plutôt… pourquoi choisir Grist dans le service public ?
 
 Je vois 3 raisons :
 
 - Grist est un outil qui fonctionne très bien avec une interface correcte. J’ai constaté très peu de lenteur ou de bug, et l’interface n’est pas celle d’un outil désuet.
-- Grist est simple, intuitif et souverain. Il accélère le développement d’applications métiers prend du temps dans une administration : au-delà des difficultés habituelles du développement d’applications, les outils utilisés par les agents publics doivent respecter les exigences de souveraineté et de sécurité des données. De plus, même si les agents connaissent leur métier et savent ce dont ils ont besoin (ce sont des magiciens de l’Excel) mais ils n’ont pas nécessairement les compétences techniques ou le temps nécessaire pour les acquérir pour créer et manipuler des bases de données.
-- Grist fait partie de LaSuite. Cela peut paraître anecdotique, mais ce contexte facilite son utilisation auprès des agents, de plus des intégrations plus étroites entre les autres outils comme Docs ou Fichiers.
+- Grist est simple, intuitif et souverain. Il accélère le développement d’applications métiers, qui prend du temps dans une administration : au-delà des difficultés habituelles du développement d’applications, les outils utilisés par les agents publics doivent respecter les exigences de souveraineté et de sécurité des données. De plus, les agents connaissent leur métier et savent ce dont ils ont besoin (ce sont des magiciens de l’Excel), mais ils n’ont pas nécessairement les compétences techniques, ni le temps de les acquérir, pour créer et manipuler des bases de données.
+- Grist fait partie de LaSuite. Cela peut paraître anecdotique, mais ce contexte facilite son utilisation auprès des agents et permet des intégrations plus étroites avec les autres outils comme Docs ou Fichiers.
 
 On pourrait alors se dire que Grist est l’outil miracle et encourager son utilisation. Mais la floraison de multiples projets Grist peut poser des problèmes d’encadrement, de maintenance et de contrôle. Cet enjeu sera sûrement pris en compte dans les mois à venir, car l’outil est de plus en plus utilisé dans le service. Il est notamment activement déployé au sein du Ministère de l’éducation.
 
@@ -136,4 +136,4 @@ Pour certains utilisateurs au profil moins tech, la prise en main de l’outil e
 
 Est-ce que ça vaut le coup de passer du temps à les faire monter en compétence ?
 
-Je reste très enthousiaste quand à l’évolution du produit et devrais être présente au forum Grist.Gouv à Toulouse le Vendredi 13 novembre.
+Je reste très enthousiaste quant à l’évolution du produit et devrais être présente au forum Grist.Gouv à Toulouse le vendredi 13 novembre.
