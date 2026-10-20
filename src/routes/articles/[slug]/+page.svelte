@@ -27,7 +27,7 @@
 	</div>
 
 	<p class="mt-16 border-t border-gray-200 pt-8">
-		<a href={resolve('/blog')} class="text-gray-600 underline-offset-4 hover:underline">
+		<a href={resolve('/articles')} class="text-gray-600 underline-offset-4 hover:underline">
 			<span aria-hidden="true">←</span> Tous les articles
 		</a>
 	</p>

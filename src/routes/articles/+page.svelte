@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Blog | Clémence Fernandez</title>
+	<title>Articles | Clémence Fernandez</title>
 </svelte:head>
 
 <div class="mx-auto max-w-2xl px-5 py-16">
@@ -24,7 +24,7 @@
 						</time>
 						<h2 class="mt-1 text-2xl leading-snug font-semibold">
 							<a
-								href={resolve('/blog/[slug]', { slug: post.slug })}
+								href={resolve('/articles/[slug]', { slug: post.slug })}
 								class="underline-offset-4 hover:underline"
 							>
 								{post.title}

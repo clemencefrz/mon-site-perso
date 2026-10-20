@@ -15,7 +15,7 @@
 		<ul class="flex flex-row gap-2">
 			<li><a href={resolve('/')} class="rounded border px-3 py-1">Accueil</a></li>
 			<li><a href={resolve('/experiences')} class="rounded border px-3 py-1">Expériences</a></li>
-			<li><a href={resolve('/blog')} class="rounded border px-3 py-1">Articles</a></li>
+			<li><a href={resolve('/articles')} class="rounded border px-3 py-1">Articles</a></li>
 			<li><a href={resolve('/contact')} class="rounded border px-3 py-1">Contact</a></li>
 		</ul>
 	</nav>
