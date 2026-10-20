@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { formatDuration, formatMonth } from '$lib/date';
 	import type { Experience } from '$lib/experiences';
+	import TechTag from './TechTag.svelte';
 
 	let { experience }: { experience: Experience } = $props();
 
@@ -71,7 +72,7 @@
 					<span class="w-14 shrink-0 text-sm font-semibold">{group.label}</span>
 					<ul class="flex flex-wrap gap-2">
 						{#each group.techs as tech (tech)}
-							<li class="rounded border px-2 py-0.5 text-sm">{tech}</li>
+							<li><TechTag {tech} /></li>
 						{/each}
 					</ul>
 				</div>
