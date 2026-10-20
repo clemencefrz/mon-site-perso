@@ -15,7 +15,7 @@
 		<time datetime={data.post.date} class="text-sm text-gray-500">
 			{formatDate(data.post.date)}
 		</time>
-		<h1 class="mt-2 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
+		<h1 class="mt-2 leading-tight">
 			{data.post.title}
 		</h1>
 		<p class="mt-4 text-xl leading-relaxed text-gray-600">{data.post.description}</p>

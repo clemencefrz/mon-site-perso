@@ -10,7 +10,7 @@
 </svelte:head>
 
 <div class="mx-auto max-w-2xl px-5 py-16">
-	<h1 class="mb-12 text-4xl font-bold tracking-tight sm:text-5xl">Mes articles</h1>
+	<h1 class="mb-12">Articles</h1>
 
 	{#if data.posts.length === 0}
 		<p class="text-gray-600">Aucun article pour le moment.</p>
