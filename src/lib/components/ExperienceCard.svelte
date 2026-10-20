@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { formatDuration, formatMonth } from '$lib/date';
-	import type { Experience } from '$lib/experiences';
+	import { formatPeriod, type Experience } from '$lib/experiences';
 	import TechTag from './TechTag.svelte';
 
 	let { experience }: { experience: Experience } = $props();
 
 	const today = new Date().toISOString().slice(0, 10);
-	const duration = $derived(formatDuration(experience.startDate, experience.endDate ?? today));
+	const period = $derived(formatPeriod(experience, today));
 
 	// Le premier paragraphe est toujours visible, les suivants sont dans « Voir plus ».
 	const paragraphs = $derived(experience.context.split('\n').filter((p) => p.trim() !== ''));
@@ -30,14 +29,7 @@
 			{#if experience.company}
 				<p>{experience.company}</p>
 			{/if}
-			<p class="text-sm text-gray-500">
-				{#if experience.endDate}
-					{formatMonth(experience.startDate)} – {formatMonth(experience.endDate)}
-				{:else}
-					Depuis {formatMonth(experience.startDate)}
-				{/if}
-				· {duration}
-			</p>
+			<p class="text-sm text-gray-500">{period}</p>
 		</div>
 		<span class="rounded-full border px-3 py-1 text-sm whitespace-nowrap">
 			{experience.contractType}

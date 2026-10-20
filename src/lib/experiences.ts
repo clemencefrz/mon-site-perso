@@ -1,10 +1,12 @@
+import { formatDuration, formatMonth } from './date';
+
 export type Experience = {
 	title: string;
 	/** Absente quand le titre est déjà le nom du projet. */
 	company?: string;
 	/** Format AAAA-MM-JJ */
 	startDate: string;
-	/** Format AAAA-MM-JJ. Absente si l'expérience est en cours. */
+	/** Format AAAA-MM-JJ. Absente si l'expérience est en cours (`current`) ou ponctuelle. */
 	endDate?: string;
 	contractType: 'CDI' | 'Auto-entreprise' | 'Bénévole';
 	/** Un paragraphe par ligne : seul le premier est affiché par défaut. */
@@ -15,7 +17,29 @@ export type Experience = {
 	githubUrl?: string;
 	/** Chemin d'une image du dossier static/ */
 	logo?: string;
+	/** Indique si l'expérience est encore en cours */
+	current?: boolean;
 };
+
+/**
+ * Période affichée sur la carte :
+ * - avec une date de fin : « octobre 2022 – décembre 2024 · 2 ans 3 mois »
+ * - en cours : « Depuis septembre 2024 · 2 ans 2 mois » (durée jusqu'à `today`)
+ * - sinon, l'expérience était ponctuelle : « janvier 2025 », sans durée
+ */
+export function formatPeriod(
+	experience: Pick<Experience, 'startDate' | 'endDate' | 'current'>,
+	today: string
+): string {
+	const { startDate, endDate, current } = experience;
+	if (endDate) {
+		return `${formatMonth(startDate)} – ${formatMonth(endDate)} · ${formatDuration(startDate, endDate)}`;
+	}
+	if (current) {
+		return `Depuis ${formatMonth(startDate)} · ${formatDuration(startDate, today)}`;
+	}
+	return formatMonth(startDate);
+}
 
 export function sortByStartDateDesc(list: Experience[]): Experience[] {
 	return [...list].sort((a, b) => b.startDate.localeCompare(a.startDate));
@@ -187,7 +211,8 @@ export const experiences: Experience[] = [
 			tools: ['AWS', 'Amazon S3', 'Docker', 'Elastic Search', 'Kibana', 'Typescript']
 		},
 		githubUrl: 'https://github.com/clemencefrz/uramap-front-copy',
-		logo: '/logos/uramap.png'
+		logo: '/logos/uramap.png',
+		current: true
 	},
 	{
 		title: 'Tisse Ta Toile',
@@ -243,7 +268,8 @@ export const experiences: Experience[] = [
 			tools: ['Docker', 'Knex', 'Matomo', 'Scalingo', 'Sentry']
 		},
 		siteUrl: 'https://beta.gouv.fr/startups/pitchou.html',
-		githubUrl: 'https://github.com/betagouv/pitchou'
+		githubUrl: 'https://github.com/betagouv/pitchou',
+		current: true
 	},
 	{
 		title: 'Enseignante',

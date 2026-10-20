@@ -4,6 +4,7 @@ import {
 	allTechs,
 	experiences,
 	filterExperiences,
+	formatPeriod,
 	sortByStartDateDesc,
 	type Experience
 } from './experiences';
@@ -111,5 +112,32 @@ describe('filterExperiences', () => {
 		expect(titles(filterExperiences(list, { techs: ['Node.js'], contractTypes: ['CDI'] }))).toEqual(
 			['React']
 		);
+	});
+});
+
+describe('formatPeriod', () => {
+	const today = '2026-10-20';
+
+	it('affiche les deux dates et la durée quand il y a une date de fin', () => {
+		expect(formatPeriod({ startDate: '2022-10-10', endDate: '2024-12-31' }, today)).toBe(
+			'octobre 2022 – décembre 2024 · 2 ans 3 mois'
+		);
+	});
+
+	it('affiche « Depuis » et la durée jusqu’à aujourd’hui pour une expérience en cours', () => {
+		expect(formatPeriod({ startDate: '2024-09-30', current: true }, today)).toBe(
+			'Depuis septembre 2024 · 2 ans 2 mois'
+		);
+	});
+
+	it('affiche seulement le mois, sans durée, pour une expérience ponctuelle', () => {
+		expect(formatPeriod({ startDate: '2025-01-01' }, today)).toBe('janvier 2025');
+		expect(formatPeriod({ startDate: '2025-01-01', current: false }, today)).toBe('janvier 2025');
+	});
+
+	it('privilégie la date de fin si elle existe, même avec current', () => {
+		expect(
+			formatPeriod({ startDate: '2025-01-06', endDate: '2025-06-20', current: true }, today)
+		).toBe('janvier 2025 – juin 2025 · 6 mois');
 	});
 });
