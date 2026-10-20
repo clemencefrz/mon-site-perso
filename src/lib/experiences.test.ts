@@ -5,7 +5,7 @@ import {
 	experiences,
 	filterExperiences,
 	formatPeriod,
-	sortByStartDateDesc,
+	sortExperiences,
 	type Experience
 } from './experiences';
 
@@ -21,17 +21,34 @@ const experience = (startDate: string): Experience => ({
 it('trie les expériences de la plus récente à la plus ancienne', () => {
 	const list = [experience('2023-01-01'), experience('2025-06-01'), experience('2024-03-01')];
 
-	expect(sortByStartDateDesc(list).map((e) => e.startDate)).toEqual([
+	expect(sortExperiences(list).map((e) => e.startDate)).toEqual([
 		'2025-06-01',
 		'2024-03-01',
 		'2023-01-01'
 	]);
 });
 
+it('met les expériences en cours en premier, puis trie par date', () => {
+	const ongoing = (startDate: string): Experience => ({ ...experience(startDate), current: true });
+	const list = [
+		experience('2026-01-01'),
+		ongoing('2024-10-01'),
+		experience('2025-06-01'),
+		ongoing('2025-06-16')
+	];
+
+	expect(sortExperiences(list).map((e) => [e.startDate, e.current ?? false])).toEqual([
+		['2025-06-16', true],
+		['2024-10-01', true],
+		['2026-01-01', false],
+		['2025-06-01', false]
+	]);
+});
+
 it('ne modifie pas la liste de départ', () => {
 	const list = [experience('2023-01-01'), experience('2025-06-01')];
 
-	sortByStartDateDesc(list);
+	sortExperiences(list);
 
 	expect(list.map((e) => e.startDate)).toEqual(['2023-01-01', '2025-06-01']);
 });

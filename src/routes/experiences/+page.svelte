@@ -6,10 +6,10 @@
 		allTechs,
 		experiences,
 		filterExperiences,
-		sortByStartDateDesc
+		sortExperiences
 	} from '$lib/experiences';
 
-	const sortedExperiences = sortByStartDateDesc(experiences);
+	const sortedExperiences = sortExperiences(experiences);
 	const techOptions = allTechs(experiences);
 	const contractTypeOptions = allContractTypes(experiences);
 

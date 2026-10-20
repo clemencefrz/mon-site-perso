@@ -41,8 +41,11 @@ export function formatPeriod(
 	return formatMonth(startDate);
 }
 
-export function sortByStartDateDesc(list: Experience[]): Experience[] {
-	return [...list].sort((a, b) => b.startDate.localeCompare(a.startDate));
+/** Les expériences en cours d'abord, puis de la plus récente à la plus ancienne. */
+export function sortExperiences(list: Experience[]): Experience[] {
+	return [...list].sort(
+		(a, b) => Number(!!b.current) - Number(!!a.current) || b.startDate.localeCompare(a.startDate)
+	);
 }
 
 function techsOf(experience: Experience): string[] {
