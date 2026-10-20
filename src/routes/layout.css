@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@theme {
+	--font-sans: 'Inter Variable', sans-serif;
+}
 
 @layer base {
 	h1 {
