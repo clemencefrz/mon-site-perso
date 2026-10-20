@@ -49,7 +49,7 @@
 		{#if paragraphs.length > 1}
 			<details class="mt-2">
 				<summary class="cursor-pointer text-sm text-gray-600">Voir plus</summary>
-				{#each paragraphs.slice(1) as paragraph (paragraph)}
+				{#each paragraphs.slice(1) as paragraph, i (i)}
 					<p class="mt-2">{paragraph}</p>
 				{/each}
 			</details>
@@ -59,7 +59,7 @@
 	{#if experience.missions.length > 0}
 		<h3 class="mt-4 font-semibold">Missions</h3>
 		<ul class="list-disc pl-6">
-			{#each experience.missions as mission (mission)}
+			{#each experience.missions as mission, i (i)}
 				<li>{mission}</li>
 			{/each}
 		</ul>
@@ -88,16 +88,22 @@
 					href={experience.siteUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="rounded border px-3 py-1">Voir le site ↗</a
+					class="rounded border px-3 py-1"
 				>
+					Voir le site <span aria-hidden="true">↗</span>
+					<span class="sr-only">(nouvel onglet)</span>
+				</a>
 			{/if}
 			{#if experience.githubUrl}
 				<a
 					href={experience.githubUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="rounded border px-3 py-1">GitHub ↗</a
+					class="rounded border px-3 py-1"
 				>
+					GitHub <span aria-hidden="true">↗</span>
+					<span class="sr-only">(nouvel onglet)</span>
+				</a>
 			{/if}
 		</div>
 	{/if}

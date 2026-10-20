@@ -7,7 +7,9 @@
 </script>
 
 <details class="relative">
-	<summary class="cursor-pointer list-none rounded border px-3 py-1 select-none">
+	<summary
+		class="cursor-pointer list-none rounded border px-3 py-1 select-none [&::-webkit-details-marker]:hidden"
+	>
 		{label}
 		{#if selected.length > 0}({selected.length}){/if}
 		<span aria-hidden="true">▾</span>
