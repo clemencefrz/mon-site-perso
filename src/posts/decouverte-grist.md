@@ -1,72 +1,89 @@
 ---
-title: Grist, un game-changer pour le service public ?
+title: Grist dans le service public (mais pas que) : trois façons de créer une application
 date: 2026-10-19
-description: Six mois à construire une application avec Grist et à échanger avec des agents qui l’utilisent de trois façons différentes.
+description: Six mois à construire une application avec Grist et à échanger avec des développeurs et des agents de la fonction publique qui l’utilisent. 3 manières d'utiliser Grist dans la création d'application sont ressorties : comme application complète, construite par les agents eux-mêmes ; comme back-end d'une interface développée sur mesure ; ou comme base de données partagée entre plusieurs services.
 ---
+
+**Sommaire**
+
+- [1. Ma découverte de Grist](#1-ma-decouverte-de-grist)
+  - [1.1. Une nouvelle mission Freelance sauvage apparaît](#11-une-nouvelle-mission-freelance-sauvage-apparait)
+  - [1.2. Grist un outil no-code… ou presque](#12-grist-un-outil-no-code-ou-presque)
+  - [1.3. Des limites dans la création d’une application web](#13-des-limites-dans-la-creation-dune-application-web)
+- [2. Trois façons d’utiliser Grist pour créer une application](#2-trois-facons-dutiliser-grist-pour-creer-une-application)
+  - [2.1. Mode 1 : Grist comme application complète](#21-mode-1-grist-comme-application-complete-suivre-des-missions-deleguees)
+  - [2.2. Mode 2 : Grist comme back-end d’une application sur mesure](#22-mode-2-grist-comme-back-end-dune-application-sur-mesure-gerer-les-arrivees-et-les-departs)
+  - [2.3. Mode 3 : Grist comme base de données](#23-mode-3-grist-comme-base-de-donnees-centraliser-les-donnees-de-plusieurs-services)
+  - [2.4. Conclusion](#24-conclusion)
+- [Bilan : est-ce que Grist est game-changer ?](#bilan-est-ce-que-grist-est-game-changer)
+  - [Des problèmes classiques résolus](#des-problemes-classiques-resolus)
+  - [Alors pourquoi choisir Grist ?](#alors-pourquoi-choisir-grist)
+  - [Pourquoi Grist dans le service public ?](#pourquoi-grist-dans-le-service-public)
+  - [Les limites](#les-limites)
+  - [Et la suite ?](#et-la-suite)
+- [Contacts](#contacts)
+- [Glossaire](#glossaire)
 
 ## 1. Ma découverte de Grist
 
-### 1.1. Nouvelle mission, nouvel outil.
+### 1.1. Une nouvelle mission Freelance sauvage apparaît
 
-Avril 2026, je trouve une nouvelle mission pour l’incubateur d’un ministère de l’État. L’objectif est de construire de zéro un outil pour un groupe de travail inter-administration de l’État : les Cellules Régionales Biomasse (CRB). Les agents CRB instruisent les demandes de subventions pour des projets utilisant de la biomasse. Par exemple, la mairie de ma ville (Anglet, dans le 64) a fait la demande de cette subvention lorsqu’elle a entrepris la construction de sa piscine municipale chauffée au bois.
+Avril 2026, je commence une nouveau projet pour l’incubateur d’un ministère de l’État : construire un outil numérique de zéro pour les agents publics des Cellules Régionales Biomasse (CRB), un groupe de travail inter-administration de l’État.
 
-L’application que l’on souhaite construire vise, entre autres, à centraliser et structurer les données de ces demandes de subvention, permettant aux agents d’avoir des données plus robustes pour leurs analyses et de produire un avis solide pour la préfecture.
+Les agents CRB instruisent les demandes de subventions pour des porteur de projets voulant utiliser de la biomasse. Par exemple, la mairie d'Anglet a récemment fait cette demande pour la construction de sa piscine municipale chauffée au bois.
 
-Dans la description de cette mission, une consigne claire : construire le M.V.P. (Minimum Valuable Product, le produit avec une valeur ajoutée minimale) à l’aide de l’outil Grist.
+L’objectif est de centraliser et structurer les données de ces demandes de subvention, permettant aux agents de produire des avis solide pour la préfecture.
 
-Bien que Grist fasse partie des services de LaSuite depuis fin 2022, je ne le découvre qu’au moment de postuler pour la mission. Je découvre une façon intuitive et rapide de créer des tables de données.
+Une consigne technique claire : construire le M.V.P. (Minimum Valuable Product, le produit avec une valeur ajoutée minimale) sur Grist.
 
-> 👉 Pour ceux et celles qui ne connaissent pas Grist, il s’agit d’un outil open source à la croisée des chemins entre un tableur et une base de données. Il permet de créer des tables de données, avec des colonnes typées, de lier ces tables entre elles, avec des références, et d’afficher ces données sous différentes formes (tables, formulaires, cartes…), tout ça sans coder. (Pour en savoir plus, je vous invite à consulter la documentation officielle).
+> 👉 Pour ceux et celles qui ne connaissent pas Grist, il s’agit d’un outil open source à la croisée des chemins entre un tableur et une base de données. Plus d'information [ici](https://www.getgrist.com/product/).
 
-> 👉 À noter : il faut distinguer Grist créé par Grist Labs, le logiciel libre et open source, de Grist, l’outil de LaSuite. Grist (LaSuite) est une instance de Grist (l’outil open source) hébergée par la direction interministérielle du numérique (DINUM). Les agents de la fonction publique utilisent donc Grist, qui est un « dérivé ».
+Grist possède tout ce qu'il faut pour créer des interfaces sans coder : des outils pour créer et lier des données, des vues pour les afficher, des permissions avancées... Pourtant, mon expérience de développeuse va s'avérer utile pour la suite.
 
-### 1.2. Grist un outil no-code… ou presque.
+### 1.2. Grist un outil no-code… ou presque
 
 Utiliser Grist pour construire l’application était à la fois un atout et un frein.
 
-Il était pratique et flexible pour la construction de la base de données. Dans le cadre de cette mission, nous étions une équipe de 3 dont un seul profil « tech » et les spécifications métiers encadrant les besoins des utilisateurs n’étaient pas précisément décrites. Chaque CRB a sa propre manière de fonctionner et d’instruire des dossiers, chaque agent a ses propres critères.
+Il était pratique et flexible pour la construction de la base de données. Dans le cadre de cette mission, nous sommes une équipe de 3 (une personne produit, une personne tech et un agent public) et les spécifications métiers encadrant les besoins des utilisateurs sont encore en construction. Comme chaque CRB a sa propre manière de fonctionner et d’instruire des dossiers, rien n'est encore gravé dans le marbre.
 
 Je délègue à Grist la gestion de l’authentification et des permissions, grâce à sa fonctionnalité de permissions avancées.
 
 Grist propose des widgets « tables », « formulaires » et d’autres widgets personnalisés approuvés par la DINUM.
 
-Le problème, c’est que l’on souhaite créer une application avec des fonctionnalités avancées, comme la recherche avancée de dossiers selon certains critères, des statistiques selon des paramètres dynamiques personnels à chaque utilisateur et un formulaire complexe en plusieurs étapes avec des champs liste, liste multiple…
+Le problème, c’est que l’on souhaite créer une application avec des fonctionnalités avancées.
 
-C’est là que le code rentre en jeu, car on décide d’utiliser la fonctionnalité des « widgets personnalisés ».
+Par exemple, on veut créer une recherche avancée de dossiers selon certains critères, des statistiques selon des paramètres dynamiques spécifiques à chaque utilisateur et un formulaire complexe en plusieurs étapes avec des champs liste, liste multiple…
 
-> 👉 Un widget personnalisé dans Grist est un bout de code qui permet d’afficher n’importe quelle donnée du document Grist de la manière que l’on souhaite, grâce à l’API plugin de Grist.
+C’est là qu'on décide d’utiliser la fonctionnalité des « widgets personnalisés ».
+
+> 👉 Un [widget personnalisé](https://support.getgrist.com/fr/widget-custom/) dans Grist est un bout de code qui permet d’afficher n’importe quelle donnée du document Grist de la manière que l’on souhaite, grâce à l’API plugin de Grist.
 
 ### 1.3. Des limites dans la création d’une application web
 
-Dans ce contexte, l’interface de Grist semble bloquante :
+Dans ce contexte, l’interface de Grist semble bloquante côté expérience utilisateur :
 
 - Limitée à l’instance hébergée par la DINUM, il est impossible de personnaliser l’aspect ou le contenu de la barre de navigation, de l’en-tête et des boutons d’actions.
 - La navigation entre les pages d’un document Grist via un bouton sur le widget personnalisé ne peut pas se faire de manière fluide sans rechargement.
-- La sélection d’une ligne sur une table entre deux pages n’est pas conservée. Dans notre cas concret, on souhaite rendre fluide la création d’un plan d’approvisionnement lié à une demande de subvention. Il faut donc : créer le plan, créer les pièces jointes, créer les approvisionnements (les lignes qui décrivent qui fournit combien de biomasse pour la demande), créer la subvention à laquelle le plan est lié, créer les instructions (qui instruit la demande et quelles étapes de l’instruction ont été faites). Au total, 5 tables à modifier. On a donc pensé à créer plusieurs pages définissant chaque étape de l’intégration d’un nouveau plan, mais comme la sélection du plan n’est pas conservée entre chaque page, l’utilisateur doit resélectionner le plan à chaque étape.
-- Les widgets personnalisés sont limités à la fenêtre qui les entoure, ce qui oblige à créer des interfaces très légères ou compactes. Après des itérations vaines à utiliser plusieurs petits widgets personnalisés sur une même page, on décide de poser la règle : « un seul widget personnalisé par page ».
+- La sélection d’une ligne sur une table entre deux pages n’est pas conservée, ce qui empêche de créer des parcours utilisateurs entre les pages sur une même donnée sélectionnée.
+- Les widgets personnalisés sont limités à la fenêtre qui les entoure, ce qui oblige à créer des interfaces très légères ou compactes.
 
-De mon côté, je tente d’appliquer les pratiques classiques de développement à cette application hybride mi-document Grist, mi-base de code classique (celle qui définit les widgets personnalisés).
+Grist pose aussi des enjeux techniques. Je tente d’appliquer les pratiques classiques à cette application hybride mi-document Grist, mi-base de code classique (celle qui définit les widgets personnalisés).
 
-- Comment créer et gérer un environnement de développement, un environnement de préproduction et un environnement de production ?
-- Comment suivre les interactions des utilisateurs dans ce contexte ?
-- Comment remonter et suivre les erreurs ?
-- Comment faire une mise en production propre ?
-
-Pendant l’été, je profite du calme des bureaux pour passer plus de temps à creuser ces questions avec la communauté Grist.
+Le calme de l'été me donne plus de temps à creuser ces questions avec la communauté Grist.
 
 ## 2. Trois façons d’utiliser Grist pour créer une application
 
-En échangeant avec des développeurs et des agents utilisant Grist, je me rends compte que l’outil peut être utilisé de 3 manières différentes, qu’on appellera « modes ».
+En échangeant avec des développeurs et des agents utilisant Grist, je me rends compte que l’outil peut être utilisé de 3 manières différentes, qu’on appellera « modes » :
 
-**Mode 1 : Grist comme application complète.** Grist sert à la fois de base de données, de back-end et d’interface utilisateur. Les agents utilisent directement ses pages, ses tables, ses formulaires et, si besoin, des widgets personnalisés.
+- **Mode 1 : Grist comme application complète.** Grist sert à la fois de base de données, de back-end et d’interface utilisateur. Les agents utilisent directement ses pages, ses tables, ses formulaires et, si besoin, des widgets personnalisés.
+- **Mode 2 : Grist comme back-end d’une application sur mesure.** L’interface est développée en dehors de Grist, qui prend en charge les données, les permissions et une partie de la sécurité. Les utilisateurs finaux utilisent l’application sur mesure, sans naviguer dans l’interface native de Grist.
+- **Mode 3 : Grist comme base de données.** Grist sert uniquement à stocker et structurer les données. L’interface, la logique métier et le reste du back-end sont développés en dehors de Grist, via son API.
 
-**Mode 2 : Grist comme back-end d’une application sur mesure.** L’interface est développée en dehors de Grist, qui prend en charge les données, les permissions et une partie de la sécurité. Les utilisateurs finaux utilisent l’application sur mesure, sans naviguer dans l’interface native de Grist.
+> Ces trois modes ont été présentés en visioconférence à la GristCon 2026 : [voir la vidéo sur YouTube](https://www.youtube.com/watch?v=28M0RIUTzV8&t=20s).
 
-**Mode 3 : Grist comme base de données.** Grist sert uniquement à stocker et structurer les données. L’interface, la logique métier et le reste du back-end sont développés en dehors de Grist, via son API.
+Illustrons ces trois modes à travers des exemples concrets dans le service public.
 
-J’ai notamment eu l’occasion d’échanger avec 3 agents qui ont chacun créé une application avec Grist dans ces trois modes de fonctionnement.
-
-### 2.1 Mode 1 : Grist comme application complète : suivre des missions déléguées
+### 2.1. Mode 1 : Grist comme application complète : suivre des missions déléguées
 
 André Gauffier n’est pas développeur de métier, et pourtant il a construit une partie de son application en un week-end, sur Grist.
 
@@ -74,9 +91,7 @@ Son administration doit suivre et superviser des missions relevant de la respons
 
 Dans ce contexte, Grist sert à la fois de base de données et d’interface utilisateur. Les utilisateurs naviguent entre les différentes pages du document. Les vues alternent entre les fonctionnalités natives de Grist et des widgets personnalisés. L’application comprend notamment des formulaires et des intégrations avec Démarche Numérique via OTP.
 
-En revanche, André remonte que la courbe d’apprentissage a été complexe pour les utilisateurs. Des tutoriels et des fiches ont été nécessaires, et la construction de l’outil a demandé de nombreuses itérations. La communication entre plusieurs documents Grist constitue également une limite, notamment pour partager des tables de données de référence.
-
-### 2.2 Mode 2 : Grist comme back-end d’une application sur mesure : gérer les arrivées et les départs
+### 2.2. Mode 2 : Grist comme back-end d’une application sur mesure : gérer les arrivées et les départs
 
 L’objectif de cette application est de gérer les arrivées, les départs et les mouvements des agents (changement d’étage, changement de poste, mutation interne…), qui impliquent plusieurs services et interlocuteurs. Il faut organiser leurs interventions et construire un workflow adapté.
 
@@ -84,9 +99,7 @@ Kada Sahnine, chef du pôle informatique du service des douanes, utilise Grist p
 
 Dans cette configuration, Kada est la seule personne à manipuler le document Grist. Les utilisateurs finaux n’ont accès qu’au custom widget, dont l’interface est configurable dans les tables du document.
 
-Pour Kada, cette approche permet de développer facilement une interface adaptée aux besoins, en utilisant des bibliothèques JavaScript. Il constate des problèmes de lenteur et le même besoin de faire communiquer les documents Grist entre eux.
-
-### 2.3 Mode 3 : Grist comme base de données : centraliser les données de plusieurs services
+### 2.3. Mode 3 : Grist comme base de données : centraliser les données de plusieurs services
 
 Christophe Cardona n’est pas développeur, c’est un agent des impôts (plus précisément, de la DRFiP). Lui et son équipe viennent en support des agents de la S.I.E., les agents qui s’occupent des problèmes des impôts des entreprises.
 
@@ -94,17 +107,15 @@ Christophe Cardona conçoit alors PILOT qui utilise Grist comme base de données
 
 Un serveur Python récupère ensuite les données de ce socle commun pour proposer des fonctionnalités plus avancées. Plusieurs documents Grist partagent les données, ce qui permet de les rendre accessibles aux différents services.
 
-**Ce que PILOT utilise :** Les tables, les colonnes, l’API REST, les droits par document, les pièces jointes, et les vues Grist pour l’audit et le dépannage.
+### 2.4. Conclusion
 
-**Ce que PILOT n’utilise pas :** Les widgets et les pages Grist comme interface agent, les formules Grist pour la règle métier — elle vit dans le code, testée et versionnée.
-
-#### Les résultats
-
-Les données sont structurées et partagées entre les différents services. Lorsqu’un agent met à jour une donnée, les autres agents peuvent accéder à cette mise à jour. Grist fournit ainsi un socle de données commun, tandis que la logique métier et les fonctionnalités avancées sont développées en dehors de Grist.
+Chaque mode a ses compromis. Le mode 1 permet à des non-développeurs de construire leur propre application, mais demande de former les utilisateurs. Le mode 2 offre une interface sur mesure sans construire de back-end, mais ralentit quand les données grossissent. Le mode 3 crée un socle de données commun à plusieurs services, mais nécessite des développeurs. Dans tous les cas, Grist s’adapte à un budget serré, reste simple pour les agents et, comme il fait partie de LaSuite, couvre déjà la sécurité et la souveraineté, ce qui accélère le développement.
 
 ## Bilan : est-ce que Grist est game-changer ?
 
 Après plus de 6 mois à utiliser Grist dans mon travail et à échanger avec des utilisateurs aux profils techniques et non techniques, est-ce que je peux affirmer que Grist est l’outil à adopter pour créer des applications ou des projets ?
+
+### Des problèmes classiques résolus
 
 Je constate qu’il résout des problèmes classiques :
 
@@ -122,6 +133,8 @@ Je pense que Grist est aussi un outil intéressant pour créer des MVP. J’ai p
 
 Mais pour créer des fonctionnalités plus complexes, je suis encore en cours de réflexion.
 
+### Pourquoi Grist dans le service public ?
+
 La question est peut-être plutôt… pourquoi choisir Grist dans le service public ?
 
 Je vois 3 raisons :
@@ -130,10 +143,33 @@ Je vois 3 raisons :
 - Grist est simple, intuitif et souverain. Il accélère le développement d’applications métiers, qui prend du temps dans une administration : au-delà des difficultés habituelles du développement d’applications, les outils utilisés par les agents publics doivent respecter les exigences de souveraineté et de sécurité des données. De plus, les agents connaissent leur métier et savent ce dont ils ont besoin (ce sont des magiciens de l’Excel), mais ils n’ont pas nécessairement les compétences techniques, ni le temps de les acquérir, pour créer et manipuler des bases de données.
 - Grist fait partie de LaSuite. Cela peut paraître anecdotique, mais ce contexte facilite son utilisation auprès des agents et permet des intégrations plus étroites avec les autres outils comme Docs ou Fichiers.
 
+### Les limites
+
 On pourrait alors se dire que Grist est l’outil miracle et encourager son utilisation. Mais la floraison de multiples projets Grist peut poser des problèmes d’encadrement, de maintenance et de contrôle. Cet enjeu sera sûrement pris en compte dans les mois à venir, car l’outil est de plus en plus utilisé dans le service. Il est notamment activement déployé au sein du Ministère de l’éducation.
 
 Pour certains utilisateurs au profil moins tech, la prise en main de l’outil est fastidieuse.
 
 Est-ce que ça vaut le coup de passer du temps à les faire monter en compétence ?
 
-Je reste très enthousiaste quant à l’évolution du produit et devrais être présente au forum Grist.Gouv à Toulouse le vendredi 13 novembre.
+### Et la suite ?
+
+Je reste très enthousiaste quant à l’évolution du produit et devrais être présente au [forum Grist.Gouv à Toulouse le vendredi 13 novembre](https://forum.grist.libre.sh/t/club-utilisateurs-grist-rendez-vous-a-toulouse-le-13-novembre-2026/4290).
+
+## Contacts
+
+- **André Gauffier**, agent public : [andre.gauffier@agriculture.gouv.fr](mailto:andre.gauffier@agriculture.gouv.fr)
+- **Kada Sahnine**, agent public : [kada.sahnine@finances.gouv.fr](mailto:kada.sahnine@finances.gouv.fr)
+- **Christophe Cardona**, agent des impôts (DGFiP), créateur de PILOT : [christophe.cardona@dgfip.finances.gouv.fr](mailto:christophe.cardona@dgfip.finances.gouv.fr)
+- **Clémence Fernandez**, développeuse : [clemencefrz@gmail.com](mailto:clemencefrz@gmail.com) · [LinkedIn](https://www.linkedin.com/in/clemencefernandez/) · [forum Grist](https://community.getgrist.com/u/Clemence_Fernandez)
+
+## Glossaire
+
+- **API** (_Application Programming Interface_) : interface qui permet à des programmes d’échanger des données entre eux.
+- **API REST** : API qui suit les conventions du web (adresses et requêtes HTTP) pour lire et modifier des données.
+- **CRB** : Cellules Régionales Biomasse.
+- **DGFiP** : Direction générale des Finances publiques.
+- **DINUM** : Direction interministérielle du numérique.
+- **DRFiP** : Direction régionale des Finances publiques.
+- **MVP** (_Minimum Viable Product_) : première version d’un produit, avec juste assez de fonctionnalités pour être utilisée et recueillir des retours.
+- **OVVT** : organisme vétérinaire à vocation technique.
+- **SIE** : Service des impôts des entreprises.
