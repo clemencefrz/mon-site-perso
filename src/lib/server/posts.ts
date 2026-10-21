@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { Marked } from 'marked';
 
 export type PostMeta = {
 	slug: string;
@@ -11,6 +11,34 @@ export type Post = PostMeta & { html: string };
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Identifiant d'ancre d'un titre : « 1.1. Ma découverte ! » donne « 11-ma-decouverte ». */
+export function slugify(text: string): string {
+	return text
+		.normalize('NFD')
+		.replace(/[̀-ͯ]/g, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.trim()
+		.replace(/[\s-]+/g, '-');
+}
+
+/** Rend le Markdown en HTML, en donnant un identifiant à chaque titre pour pouvoir y faire un lien. */
+export function renderMarkdown(markdown: string): string {
+	const usedIds = new Map<string, number>();
+	const marked = new Marked({
+		renderer: {
+			heading({ tokens, depth, text }) {
+				const base = slugify(text) || 'section';
+				const count = usedIds.get(base) ?? 0;
+				usedIds.set(base, count + 1);
+				const id = count === 0 ? base : `${base}-${count}`;
+				return `<h${depth} id="${id}">${this.parser.parseInline(tokens)}</h${depth}>\n`;
+			}
+		}
+	});
+	return marked.parse(markdown, { async: false });
+}
 
 function isValidDate(date: string): boolean {
 	if (!DATE.test(date)) return false;
@@ -46,7 +74,7 @@ export function parsePost(slug: string, raw: string): Post {
 		title: fields.title,
 		date: fields.date,
 		description: fields.description,
-		html: marked.parse(match[2], { async: false })
+		html: renderMarkdown(match[2])
 	};
 }
 

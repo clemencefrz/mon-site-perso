@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { loadPosts, parsePost } from './posts';
+import { loadPosts, parsePost, renderMarkdown, slugify } from './posts';
 
 const post = (fields: string, body = 'Contenu') => `---\n${fields}\n---\n${body}`;
 
@@ -52,5 +52,31 @@ describe('loadPosts', () => {
 		});
 
 		expect(result.map(({ slug }) => slug)).toEqual(['recent', 'ancien']);
+	});
+});
+
+describe('slugify', () => {
+	it('enlève les accents, la ponctuation et met des tirets', () => {
+		expect(slugify('1.1. Une nouvelle mission Freelance sauvage apparaît')).toBe(
+			'11-une-nouvelle-mission-freelance-sauvage-apparait'
+		);
+		expect(slugify('Bilan : est-ce que Grist est game-changer ?')).toBe(
+			'bilan-est-ce-que-grist-est-game-changer'
+		);
+		expect(slugify('Grist un outil no-code… ou presque')).toBe('grist-un-outil-no-code-ou-presque');
+	});
+});
+
+describe('renderMarkdown', () => {
+	it('donne un identifiant à chaque titre', () => {
+		expect(renderMarkdown('## Ma partie\n\n### Sous **partie**')).toBe(
+			'<h2 id="ma-partie">Ma partie</h2>\n<h3 id="sous-partie">Sous <strong>partie</strong></h3>\n'
+		);
+	});
+
+	it('rend uniques les identifiants de titres identiques', () => {
+		expect(renderMarkdown('## Titre\n\n## Titre')).toBe(
+			'<h2 id="titre">Titre</h2>\n<h2 id="titre-1">Titre</h2>\n'
+		);
 	});
 });
